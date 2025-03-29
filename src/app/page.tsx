@@ -1,15 +1,17 @@
+import QuestionsPresentation from "./client-components/QuestionsPresentation";
 import { run } from "./geminiWrapper";
 
-export default async function Home() {
-  const data = await run('en');
-  console.log("🚀 ~ Home ~ data:", data)
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: {
+    lang: 'en' | 'he'
+  }
+}) {
+  const params = await searchParams;
+  const data = await run(params.lang);
+
   return (
-    <ul>
-      {
-        data.map((item: string) => <li key={item}>
-          {item}
-        </li>)
-      }
-    </ul>
+    <QuestionsPresentation questions={data} lang={params.lang} />
   );
 }

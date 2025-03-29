@@ -64,6 +64,6 @@ export async function run(lang: 'en' | 'he') {
         return getDynamicQuestions(lang)
     }
 
-    return lang === 'en' ? MOCK_EN : MOCK_HE
+    return lang === 'he' ? MOCK_HE : MOCK_EN
 
 }
