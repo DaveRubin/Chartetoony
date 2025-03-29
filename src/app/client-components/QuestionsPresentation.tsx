@@ -28,7 +28,7 @@ export default function QuestionsPresentation({ questions, lang }: { questions: 
                 ))}
             </div>
             {(index < questions.length && isRunning) &&
-                <button className="bg-gray-300 text-black p-4 font-bold rounded-md" onClick={() => setIndex(index + 1)}>Next Question {index + 1}/{questions.length}</button>
+                <button className="bg-gray-300 text-black p-4 font-bold rounded-md" onClick={() => setIndex(index + 1)}>Next Question {index}/{questions.length}</button>
             }
             <Timer isRunning={isRunning} lang={lang} setIsRunning={setIsRunning} />
         </div>
