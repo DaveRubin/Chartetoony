@@ -3,8 +3,9 @@ import { useRouter } from "next/navigation"
 import Timer from "./Timer"
 import { useState } from "react"
 import { Language } from "../types"
+import { clearHistory } from '../actions'
 
-export default function QuestionsPresentation({ questions, lang }: { questions: string[], lang: Language }) {
+export default function QuestionsPresentation({ questions, lang, historyLength }: { questions: string[], lang: Language, historyLength: number }) {
     const router = useRouter()
     const isHebrew = lang === 'he'
     const [running, setRunning] = useState(false)
@@ -35,6 +36,13 @@ export default function QuestionsPresentation({ questions, lang }: { questions: 
                 </button>
                 <button className="bg-green-500 text-white px-4 py-2 rounded-md" onClick={() => router.refresh()}>Next</button>
             </div>
+
+            <button
+                onClick={() => clearHistory(lang)}
+                className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+                Clear History ({historyLength})
+            </button>
         </div>
     </div>
 }
