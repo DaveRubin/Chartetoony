@@ -63,7 +63,7 @@ const getENPrompt = (history: string[]) => {
 
 export async function run(lang: Language, history: string[], mock: boolean) {
     if (mock) {
-        return lang === 'en' ? MOCK_EN : MOCK_HE
+        return lang === 'en' ? [...MOCK_EN] : [...MOCK_HE]
     }
     const prompt = lang === 'en' ? getENPrompt(history) : getHEPrompt(history)
     const response = await ai.models.generateContent({

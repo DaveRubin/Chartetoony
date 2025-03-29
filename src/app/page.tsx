@@ -28,11 +28,9 @@ export default async function Home({
   const isHebrew = lang === 'he'
   return (
     <div dir={isHebrew ? 'rtl' : 'ltr'} className={`flex flex-col gap-4 p-8 items-center`} >
-
       <QuestionsPresentation questions={data} lang={lang} />
       <Controls lang={lang} historyLength={history.length} />
-
     </div>
-    // <QuestionsPresentation questions={data} lang={lang} historyLength={history.length} />
+
   );
 }

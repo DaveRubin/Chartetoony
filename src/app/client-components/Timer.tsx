@@ -2,9 +2,8 @@
 import { useEffect, useState } from "react"
 import { Language } from "../types"
 
-export default function Timer({ onComplete, onStart, lang }: { onComplete: VoidFunction, onStart: VoidFunction, lang: Language }) {
+export default function Timer({ lang, isRunning, setIsRunning }: { lang: Language, isRunning: boolean, setIsRunning: (isRunning: boolean) => void }) {
     const [time, setTime] = useState(60)
-    const [isRunning, setIsRunning] = useState(false)
 
     useEffect(() => {
         let interval: NodeJS.Timeout
@@ -14,7 +13,6 @@ export default function Timer({ onComplete, onStart, lang }: { onComplete: VoidF
                 setTime((prevTime) => {
                     if (prevTime <= 1) {
                         setIsRunning(false)
-                        onComplete()
                         return 0
                     }
                     return prevTime - 1
@@ -22,12 +20,12 @@ export default function Timer({ onComplete, onStart, lang }: { onComplete: VoidF
             }, 1000)
         }
 
+
         return () => clearInterval(interval)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isRunning, onComplete])
+    }, [isRunning])
 
     const handleStart = () => {
-        onStart();
         setTime(60)
         setIsRunning(true)
     }

@@ -24,3 +24,33 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.card {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #ffce3b;
+  border: 2px solid #ffce3b;
+  border-radius: 8px;
+  width:300px;
+  min-height: 150px;
+  padding: 1rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fadeInFromTop {
+  0% {
+    transform: translateY(-300px) rotate(-10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.fade-in-top {
+  animation: fadeInFromTop 0.3s ease-out forwards;
+}
