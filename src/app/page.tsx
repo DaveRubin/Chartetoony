@@ -2,6 +2,8 @@ import QuestionsPresentation from "./client-components/QuestionsPresentation";
 import { run } from "./geminiWrapper";
 import { Language } from "./types";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home({
   searchParams,
 }: {
@@ -10,6 +12,7 @@ export default async function Home({
   }>
 }) {
   const params = await searchParams;
+
   const data = await run(params.lang);
 
   return (

@@ -33,7 +33,7 @@ export default function QuestionsPresentation({ questions, lang }: { questions: 
                     router.push(`/?lang=${isHebrew ? 'en' : 'he'}`)
                 }}>{isHebrew ? 'English' : 'עברית'}
                 </button>
-                <button className="bg-green-500 text-white px-4 py-2 rounded-md">Next</button>
+                <button className="bg-green-500 text-white px-4 py-2 rounded-md" onClick={() => router.refresh()}>Next</button>
             </div>
         </div>
     </div>

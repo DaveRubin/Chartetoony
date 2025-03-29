@@ -1,10 +1,13 @@
 import { GoogleGenAI, Type } from "@google/genai";
+import { Language } from "./types";
 const apiKey = process.env.GEMINI_API_KEY || '';
 const ai = new GoogleGenAI({ apiKey });
 
 
 const NUMBER_OF_QUESTIONS = 15;
 
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MOCK_EN =
     [
         'What color is a school bus?',
@@ -23,6 +26,7 @@ const MOCK_EN =
         'What is the first letter of the alphabet?',
         'What month comes after January?'
     ]
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MOCK_HE = [
     `מי צייר את המונה ליזה?`,
     `מהי בירת צרפת?`,
@@ -41,7 +45,7 @@ const MOCK_HE = [
     `מי המציא את הנורה?`,
 ]
 
-async function getDynamicQuestions(lang: 'en' | 'he') {
+async function getDynamicQuestions(lang: Language) {
     const response = await ai.models.generateContent({
         model: 'gemini-2.0-flash',
         contents: lang === 'en' ? `provide ${NUMBER_OF_QUESTIONS} really short and simple trivia questions` : `ספר ${NUMBER_OF_QUESTIONS} שאלות טריוויה קצרות וקלות`,
@@ -59,11 +63,11 @@ async function getDynamicQuestions(lang: 'en' | 'he') {
     return JSON.parse(response.text || '')
 }
 
-export async function run(lang: 'en' | 'he') {
-    if (false) {
-        return getDynamicQuestions(lang)
-    }
+export async function run(lang: Language) {
 
-    return lang === 'he' ? MOCK_HE : MOCK_EN
+    return getDynamicQuestions(lang)
+
+
+    // return lang === 'he' ? MOCK_HE : MOCK_EN
 
 }
