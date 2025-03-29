@@ -5,9 +5,9 @@ import { Language } from "./types";
 export default async function Home({
   searchParams,
 }: {
-  searchParams: {
+  searchParams: Promise<{
     lang: Language
-  }
+  }>
 }) {
   const params = await searchParams;
   const data = await run(params.lang);
