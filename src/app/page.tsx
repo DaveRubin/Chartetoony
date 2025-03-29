@@ -15,15 +15,14 @@ export default async function Home({
   }>
 }) {
   const params = await searchParams;
-  const value = await redis.get(`history-${params.lang}`);
+  const lang = params.lang || 'en';
+  const value = await redis.get(`history-${lang}`);
   const history = JSON.parse(value || '[]');
-
-  const data = await run(params.lang, history);
-  console.log("🚀 ~ data:", data)
+  const data = await run(lang, history);
   const newHistory = [...history, ...data];
-  await redis.set(`history-${params.lang}`, JSON.stringify(newHistory));
+  await redis.set(`history-${lang}`, JSON.stringify(newHistory));
 
   return (
-    <QuestionsPresentation questions={data} lang={params.lang} historyLength={history.length} />
+    <QuestionsPresentation questions={data} lang={lang} historyLength={history.length} />
   );
 }
