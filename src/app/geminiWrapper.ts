@@ -61,9 +61,11 @@ const getENPrompt = (history: string[]) => {
 }
 
 
-export async function run(lang: Language, history: string[]) {
+export async function run(lang: Language, history: string[], mock: boolean) {
+    if (mock) {
+        return lang === 'en' ? MOCK_EN : MOCK_HE
+    }
     const prompt = lang === 'en' ? getENPrompt(history) : getHEPrompt(history)
-    console.log("🚀 ~ prompt:", prompt)
     const response = await ai.models.generateContent({
         model: 'gemini-2.0-flash',
         contents: prompt,
