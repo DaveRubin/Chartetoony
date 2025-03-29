@@ -2,8 +2,9 @@
 import { useRouter } from "next/navigation"
 import Timer from "./Timer"
 import { useState } from "react"
+import { Language } from "../types"
 
-export default function QuestionsPresentation({ questions, lang }: { questions: string[], lang: 'en' | 'he' }) {
+export default function QuestionsPresentation({ questions, lang }: { questions: string[], lang: Language }) {
     const router = useRouter()
     const isHebrew = lang === 'he'
     const [running, setRunning] = useState(false)
@@ -21,7 +22,7 @@ export default function QuestionsPresentation({ questions, lang }: { questions: 
                 ))}
             </ul>
 
-            <Timer onComplete={() => {
+            <Timer lang={lang} onComplete={() => {
                 setRunning(false)
             }} onStart={() => {
                 setRunning(true)

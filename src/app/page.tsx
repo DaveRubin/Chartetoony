@@ -1,11 +1,12 @@
 import QuestionsPresentation from "./client-components/QuestionsPresentation";
 import { run } from "./geminiWrapper";
+import { Language } from "./types";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: {
-    lang: 'en' | 'he'
+    lang: Language
   }
 }) {
   const params = await searchParams;
